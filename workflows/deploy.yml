@@ -1,0 +1,54 @@
+name: Deploy to CloudPanel
+
+on:
+  push:
+    branches: [ "main" ]
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    name: Rsync via SSH
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup SSH key
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Add known_hosts (GitHub runner -> Server)
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p "${{ secrets.SSH_PORT }}" "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Ensure target path exists
+        run: |
+          ssh -p "${{ secrets.SSH_PORT }}" "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "mkdir -p '${{ secrets.DEPLOY_PATH }}'"
+
+      - name: Rsync files
+        env:
+          SRC: ${{ secrets.SOURCE_PATH }}
+          DEST: ${{ secrets.DEPLOY_PATH }}
+          HOST: ${{ secrets.SSH_HOST }}
+          USER: ${{ secrets.SSH_USER }}
+          PORT: ${{ secrets.SSH_PORT }}
+          EXCLUDES: ${{ secrets.RSYNC_EXCLUDES }}
+        run: |
+          IFS=',' read -ra EX <<< "$EXCLUDES"
+          EXCLUDE_ARGS=""
+          for e in "${EX[@]}"; do
+            [ -n "$e" ] && EXCLUDE_ARGS="$EXCLUDE_ARGS --exclude=$e"
+          done
+          rsync -az --delete $EXCLUDE_ARGS -e "ssh -p $PORT" "$SRC/" "$USER@$HOST:$DEST/"
+
+      - name: Post-deploy touch (optional caching bust)
+        run: |
+          ssh -p "${{ secrets.SSH_PORT }}" "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "test -d '${{ secrets.DEPLOY_PATH }}' && touch '${{ secrets.DEPLOY_PATH }}/.deployed_$(date +%s)' || true"
