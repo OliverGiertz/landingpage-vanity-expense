@@ -8,7 +8,7 @@
       "src": "assets/img/hero-van.png",
       "alt": "Camper am See bei Sonnenuntergang mit iPhone"
     },
-    "primaryCta": { "label": "Jetzt im App Store", "href": "https://app.vanityontour.de" },
+    "primaryCta": { "label": " Jetzt im App Store", "href": "https://vanityontour.de/landing" },
     "secondaryCta": { "label": "Mehr erfahren", "href": "#features" }
   },
   "features": [
@@ -69,6 +69,6 @@
   "info": {
     "title": "Was ist neu?",
     "bodyHtml": "<ul><li>Bessere Diagrammlesbarkeit</li><li>Karten-Pins mit Filtern</li><li>Eintragsmaske schneller & klarer</li></ul>",
-    "storeCta": { "label": "App-Link öffnen", "href": "https://vanityontour.de/landing" }
+    "storeCta": { "label": " zum AppStore", "href": "https://vanityontour.de/landing" }
   }
 }
