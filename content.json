@@ -69,7 +69,6 @@
   "info": {
     "title": "Was ist neu?",
     "bodyHtml": "<ul><li>Bessere Diagrammlesbarkeit</li><li>Karten-Pins mit Filtern</li><li>Eintragsmaske schneller & klarer</li></ul>",
-    "storeCta": { "label": "App-Link öffnen", "href": "https://app.vanityontour.de" },
-    "altCta": { "label": "Tracking-Landing", "href": "https://vanityontour.de/landing" }
+    "storeCta": { "label": "App-Link öffnen", "href": "https://vanityontour.de/landing" }
   }
 }
