@@ -1,337 +1,232 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vanity Expense Logbook – iOS App für Camper & Vanlife</title>
-  <meta name="description" content="Behalte Tank-, Gas- und Servicekosten im Griff. Auswertungen, Karte, KPIs – optimiert für Vanlife. Jetzt im App Store laden." />
-  <meta name="robots" content="index,follow" />
+  <title>Vanity Expense Logbook – die App fürs Vanlife</title>
 
-  <!-- Open Graph / Twitter -->
+  <!-- Basis-SEO bleibt statisch -->
+  <meta name="description" content="Behalte Ausgaben im Blick – tracke Tank, Gas & Service. iOS-App fürs Vanlife." />
+  <meta property="og:title" content="Vanity Expense Logbook" />
+  <meta property="og:description" content="Behalte Ausgaben im Blick – tracke Tank, Gas & Service." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Vanity Expense Logbook – iOS App" />
-  <meta property="og:description" content="Behalte Tank-, Gas- und Servicekosten im Griff. Auswertungen, Karte, KPIs – optimiert für Vanlife." />
-  <meta property="og:image" content="/assets/og-vanity-expense.jpg" />
-  <meta property="og:url" content="https://vanityontour.de/vanity-app/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <!-- Favicon (optional) -->
-  <link rel="icon" href="/favicon.ico" />
-
-  <!-- Tailwind CSS (CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Tailwind config – an VanityOnTour angelehnt (hell, klar, mit kräftigem Akzent)
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              DEFAULT: '#2563EB', // blau (an iOS-Accent angelehnt)
-              dark: '#1E40AF'
-            },
-            accent: '#0EA5E9',
-            ink: '#0F172A',
-            soft: '#F1F5F9'
-          },
-          fontFamily: {
-            sans: ["ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Helvetica","Arial","Noto Sans","Apple Color Emoji","Segoe UI Emoji"],
-          },
-          boxShadow: {
-            soft: '0 10px 30px rgba(2,6,23,0.06)'
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Vanity Expense Logbook",
-    "operatingSystem": "iOS",
-    "applicationCategory": "FinanceApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0.99",
-      "priceCurrency": "EUR"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Vanity on Tour",
-      "url": "https://vanityontour.de"
-    },
-    "url": "https://vanityontour.de/landing",
-    "screenshot": [
-      "/assets/screens/overview.png",
-      "/assets/screens/analytic.png",
-      "/assets/screens/map.png"
-    ]
-  }
-  </script>
+  <meta property="og:image" content="https://app.vanityontour.de/assets/img/hero-van.png" />
+  <meta name="theme-color" content="#111827" />
 
   <style>
-    /* Kleinere Veredelungen */
-    .glass { backdrop-filter: blur(6px); background: rgba(255,255,255,0.6); }
+    :root { --bg:#0b0f17; --fg:#e5e7eb; --muted:#9ca3af; --brand:#2563eb; --card:#111827; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    a{color:var(--fg);text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .hero{position:relative;border-radius:20px;overflow:hidden;background:#000}
+    .hero img{width:100%;height:440px;object-fit:cover;opacity:.55;display:block}
+    .hero .overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:28px 24px 24px}
+    .eyebrow{letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+    h1{font-size:clamp(28px,4vw,44px);line-height:1.1;margin:.2em 0 .3em}
+    h2,h3{margin:.2em 0 .4em}
+    .sub{max-width:60ch;color:#d1d5db}
+    .cta{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:var(--brand);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;display:inline-flex;align-items:center;gap:10px}
+    .btn.secondary{background:#374151}
+    .grid{display:grid;gap:18px;margin-top:28px}
+    @media(min-width:900px){ .grid.cols-3{grid-template-columns:repeat(3,1fr)} .grid.cols-2{grid-template-columns:repeat(2,1fr)} }
+    .card{background:var(--card);border:1px solid #1f2937;border-radius:16px;padding:18px}
+    .feat{display:flex;gap:12px;align-items:flex-start}
+    .feat .dot{width:10px;height:10px;border-radius:999px;background:var(--brand);margin-top:.6em}
+    .gallery{display:grid;gap:14px;margin-top:8px}
+    @media(min-width:750px){ .gallery{grid-template-columns:repeat(3,1fr)} }
+    .gallery figure{margin:0}
+    .gallery img{width:100%;height:100%;object-fit:cover;border-radius:14px;border:1px solid #1f2937;cursor:zoom-in}
+    .caption{font-size:14px;color:var(--muted);margin-top:6px}
+    .footer{margin:40px 0 10px;color:var(--muted);font-size:14px;text-align:center}
+    .badges{display:flex;gap:12px;flex-wrap:wrap}
+
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;padding:24px;z-index:50}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:min(100%,1100px);max-height:90vh;border-radius:12px}
+    .lightbox .close{position:absolute;top:14px;right:14px;background:#111827;border:1px solid #374151;border-radius:10px;padding:8px 12px;cursor:pointer}
   </style>
 </head>
-<body class="font-sans text-slate-800 bg-white">
-  <!-- Header / Nav -->
-  <header class="sticky top-0 z-40 bg-white/85 backdrop-blur supports-[backdrop-filter]:glass border-b border-slate-100">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-      <a href="#top" class="flex items-center gap-3 group">
-        <img src="/assets/vanity-logo.svg" alt="Vanity on Tour Logo" class="h-8 w-auto" />
-        <span class="text-lg font-semibold tracking-tight text-ink group-hover:text-primary">Vanity Expense Logbook</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-6">
-        <a href="#features" class="hover:text-primary">Funktionen</a>
-        <a href="#whats-new" class="hover:text-primary">Neu</a>
-        <a href="#screens" class="hover:text-primary">Screenshots</a>
-        <a href="#feedback" class="hover:text-primary">Feedback</a>
-      </nav>
-      <a href="https://vanityontour.de/landing" class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-white shadow-soft hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary/40" aria-label="Im App Store laden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.564 10.06c-.01-2.143 1.768-3.171 1.848-3.218-1.006-1.47-2.568-1.673-3.116-1.694-1.326-.135-2.589.777-3.262.777-.68 0-1.71-.758-2.81-.737-1.44.022-2.775.84-3.507 2.132-1.5 2.598-.382 6.412 1.079 8.506.715 1.03 1.56 2.188 2.674 2.149 1.079-.044 1.487-.696 2.792-.696 1.3 0 1.675.696 2.81.675 1.163-.018 1.901-1.049 2.61-2.083.82-1.203 1.158-2.367 1.175-2.425-.026-.012-2.257-.867-2.293-3.386zM15.436 3.87c.587-.714.982-1.708.874-2.706-.846.034-1.875.563-2.478 1.275-.545.633-1.024 1.655-.898 2.63.952.074 1.914-.485 2.502-1.2z"/></svg>
-        App Store
-      </a>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="relative overflow-hidden bg-soft">
-    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-white via-soft to-white"></div>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 lg:py-20 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-ink">Alle Fahrzeugkosten im Blick – <span class="text-primary">ohne Exceltetris</span>.</h1>
-        <p class="mt-5 text-lg text-slate-700 leading-relaxed">Vanity Expense Logbook ist deine iOS‑App für <strong>Tanken</strong>, <strong>Gas</strong>, <strong>Ver‑/Entsorgung</strong>, Service und mehr. Mit klaren KPIs, Auswertungen als Balken‑ & Liniendiagramm und einer Karte für deine Einträge. Vanlife‑ready, offline‑freundlich, schnörkellos.</p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a href="https://vanityontour.de/landing" class="inline-flex items-center gap-3 rounded-2xl bg-black text-white px-5 py-3 shadow hover:opacity-90" aria-label="Im App Store laden">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Lade es im App Store" class="h-9 w-auto" />
+<body>
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img id="heroImage" src="assets/img/hero-van.png" alt="Camper am See bei Sonnenuntergang" loading="lazy" />
+      <div class="overlay">
+        <div class="eyebrow" id="eyebrow">Vanlife • iOS</div>
+        <h1 id="headline">Vanity Expense Logbook – die App fürs Vanlife!</h1>
+        <p class="sub" id="subline">Behalte Ausgaben im Blick & tracke Tank, Gas & Service. Einfache Übersicht statt Zettelchaos.</p>
+        <div class="cta">
+          <a class="btn" id="primaryCta" href="https://app.vanityontour.de" target="_blank" rel="noopener">
+            <span>Jetzt entdecken</span>
           </a>
-          <span class="text-sm text-slate-500">Nur für iOS. Keine Cookies, kein Tracking.</span>
-        </div>
-        <div class="mt-6 flex items-center gap-6 text-sm text-slate-600">
-          <div class="flex items-center gap-2"><span class="inline-block h-2.5 w-2.5 rounded-full bg-green-500"></span> Einfach & schnell erfassen</div>
-          <div class="flex items-center gap-2"><span class="inline-block h-2.5 w-2.5 rounded-full bg-blue-500"></span> Klaren Überblick behalten</div>
+          <a class="btn secondary" id="secondaryCta" href="#features"><span>Mehr erfahren</span></a>
         </div>
       </div>
-      <div class="relative">
-        <div class="relative rounded-3xl shadow-soft bg-white p-3 ring-1 ring-slate-100">
-          <!-- Hero Mockup: ersetze die Pfade durch deine finalen Dateien -->
-          <img src="/assets/screens/overview.png" alt="App‑Screenshot: Übersicht & KPIs" class="rounded-2xl" />
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="grid cols-3" aria-labelledby="features-title" style="scroll-margin-top:24px">
+      <h2 id="features-title" class="sr-only" style="position:absolute;left:-9999px">Funktionen</h2>
+      <!-- JS füllt Karten -->
+    </section>
+
+    <!-- GALLERY + CHANGELOG nebeneinander auf großen Screens -->
+    <section class="grid cols-2" style="margin-top:28px">
+      <!-- GALLERY -->
+      <div class="card">
+        <h2 style="margin:0 0 8px">Einblicke</h2>
+        <p class="caption" id="galleryIntro">Screens aus der App & Mockups – zum Durchklicken.</p>
+        <div class="gallery" id="gallery" aria-live="polite"></div>
+      </div>
+
+      <!-- CHANGELOG -->
+      <div class="card">
+        <h2 style="margin:0 0 8px">Changelog</h2>
+        <div id="changelog">
+          <!-- JS rendert Einträge; zeigt Fallback, falls leer -->
+        </div>
+        <p class="caption" style="margin-top:10px">Tipp: Aktualisiere regelmäßig – Nutzer lieben sichtbare Entwicklung.</p>
+      </div>
+    </section>
+
+    <!-- INFO / CTAs -->
+    <section class="grid" style="margin-top:28px">
+      <div class="card">
+        <h3 style="margin-top:0" id="infoTitle">Was ist neu?</h3>
+        <div id="infoBody">
+          <p>Verbesserte Auswertung, Karten-Pins & optimierte Eintragsmaske.</p>
+        </div>
+        <div class="badges" style="margin-top:10px">
+          <a class="btn" id="storeCta" href="https://app.vanityontour.de" target="_blank" rel="noopener">Zum App-Link</a>
+          <a class="btn secondary" id="altCta" href="https://vanityontour.de/landing" target="_blank" rel="noopener">Tracking-Landing</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Value Props -->
-  <section id="features" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <h3 class="font-semibold text-lg">Erfassen in Sekunden</h3>
-        <p class="mt-2 text-slate-600">Tank‑, Gas‑, Ver-/Entsorgungs‑ und Serviceeinträge schnell anlegen. Kilometerstand & Kosten sauber getrennt, Notizen inklusive.</p>
-      </div>
-      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <h3 class="font-semibold text-lg">KPIs, Charts & Trends</h3>
-        <p class="mt-2 text-slate-600">Verbrauch/100 km, Kostenentwicklung, Monats‑ und Zeitraumfilter. Wähle zwischen Balken- und Liniendiagramm.</p>
-      </div>
-      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <h3 class="font-semibold text-lg">Karte mit Einträgen</h3>
-        <p class="mt-2 text-slate-600">Alle betankten Orte auf einen Blick – filterbar nach 1 Monat, 6 Monaten oder 1 Jahr.</p>
-      </div>
-      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <h3 class="font-semibold text-lg">Vanlife‑ready</h3>
-        <p class="mt-2 text-slate-600">Schlanke App, klare Strukturen, funktioniert auch wenn das Netz mal dünn ist. Dark‑Mode via iOS‑Einstellung.</p>
-      </div>
-    </div>
-  </section>
+    <p class="footer">
+      <span id="footerNote">© Vanity on Tour • Bildmaterial teils KI-generiert • Letzte Aktualisierung: <span id="lastUpdated">–</span></span>
+    </p>
+  </main>
 
-  <!-- Detail Features -->
-  <section class="bg-soft">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <img src="/assets/screens/analytic.png" alt="Auswertung mit Balkendiagramm" class="rounded-3xl shadow-soft ring-1 ring-slate-100" />
-      </div>
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-ink">Alles, was du für echte Kostenkontrolle brauchst</h2>
-        <ul class="mt-6 space-y-3 text-slate-700">
-          <li>• <strong>Übersicht</strong> mit letzten Belegen und Kennzahlen (Verbrauch/100 km, Tage pro Gasflasche).</li>
-          <li>• <strong>Auswertung</strong> nach Zeitraum & Kategorie (Tankbeleg, Gaskosten, Ver‑/Entsorgung, Sonstige).</li>
-          <li>• <strong>Karte</strong> der Einträge mit Zeitraum‑Quick‑Filter (1 Monat, 6 Monate, 1 Jahr).</li>
-          <li>• <strong>Eintrag</strong>‑Tab für schnelle Erfassung unterwegs – ohne Umwege.</li>
-          <li>• <strong>Stabile Basis</strong> mit klarer Datenstruktur, ideal für Langzeit‑Tracking.</li>
-        </ul>
-        <div class="mt-8">
-          <a href="https://vanityontour.de/landing" class="inline-flex items-center gap-3 rounded-2xl bg-primary px-5 py-3 text-white shadow-soft hover:bg-primary-dark">Jetzt für 0,99 € laden</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht">
+    <button class="close" id="lbClose" aria-label="Schließen">Schließen</button>
+    <img id="lbImg" alt="" />
+  </div>
 
-  <!-- What's New -->
-  <section id="whats-new" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-ink">Was ist neu (v2.3.1)</h2>
-        <div class="mt-6 grid gap-4">
-          <div class="p-5 rounded-xl border border-slate-200 bg-white">
-            <span class="inline-block text-xs font-semibold rounded-full bg-green-100 text-green-700 px-2 py-1">Neu</span>
-            <h3 class="mt-2 font-semibold">Zeitraumfilter & Diagramm‑Switch</h3>
-            <p class="mt-1 text-slate-700">Schnell zwischen <em>Balken</em> und <em>Linie</em> wechseln, Zeitraum setzen – die App merkt sich deine Wahl.</p>
-          </div>
-          <div class="p-5 rounded-xl border border-slate-200 bg-white">
-            <span class="inline-block text-xs font-semibold rounded-full bg-blue-100 text-blue-700 px-2 py-1">Verbessert</span>
-            <h3 class="mt-2 font-semibold">Karte mit Quick‑Filtern</h3>
-            <p class="mt-1 text-slate-700">1 Monat / 6 Monate / 1 Jahr – mit klaren Pins für deine letzten Einträge.</p>
-          </div>
-          <div class="p-5 rounded-xl border border-slate-200 bg-white">
-            <span class="inline-block text-xs font-semibold rounded-full bg-amber-100 text-amber-700 px-2 py-1">Fix</span>
-            <h3 class="mt-2 font-semibold">Feinschliff an KPIs</h3>
-            <p class="mt-1 text-slate-700">Stabile Kennzahlenanzeige in der Übersicht (Ø‑Verbrauch/100 km, Tage pro Gasflasche).</p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src="/assets/screens/start.png" alt="Willkommen & Version 2.3.1" class="rounded-3xl shadow-soft ring-1 ring-slate-100" />
-      </div>
-    </div>
-  </section>
+  <script>
+    // Helper: HTML escapen für Changelog
+    const esc = (s) => (s || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
-  <!-- Screenshots -->
-  <section id="screens" class="bg-soft">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-ink">Screenshots</h2>
-      <p class="mt-2 text-slate-600">Mehr Bilder folgen – diese geben dir einen ersten Einblick.</p>
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <img src="/assets/screens/overview.png" alt="Übersicht & letzte Belege" class="rounded-2xl shadow-soft ring-1 ring-slate-100" />
-        <img src="/assets/screens/analytic.png" alt="Auswertung – Balkendiagramm" class="rounded-2xl shadow-soft ring-1 ring-slate-100" />
-        <img src="/assets/screens/map.png" alt="Karte – Einträge im Zeitraum" class="rounded-2xl shadow-soft ring-1 ring-slate-100" />
-        <img src="/assets/screens/start.png" alt="Start & Versionshinweis" class="rounded-2xl shadow-soft ring-1 ring-slate-100" />
-      </div>
-    </div>
-  </section>
+    (async () => {
+      try {
+        const res = await fetch('content.json?bust=' + Date.now());
+        if (!res.ok) throw new Error('content.json nicht gefunden');
+        const c = await res.json();
 
-  <!-- FAQ -->
-  <section class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-ink">FAQ</h2>
-    <div class="mt-8 space-y-6">
-      <details class="group rounded-xl border border-slate-200 p-5 bg-white">
-        <summary class="font-semibold cursor-pointer flex items-center justify-between">Kostet die App etwas? <span class="text-slate-400 group-open:rotate-180 transition">▾</span></summary>
-        <p class="mt-3 text-slate-700">Einmalig 0,99 € im App Store. Keine Werbung, kein Abo.</p>
-      </details>
-      <details class="group rounded-xl border border-slate-200 p-5 bg-white">
-        <summary class="font-semibold cursor-pointer flex items-center justify-between">Brauche ich einen Account? <span class="text-slate-400 group-open:rotate-180 transition">▾</span></summary>
-        <p class="mt-3 text-slate-700">Nein. Keine Registrierung, kein Tracking, keine Cookies. Deine Daten bleiben auf deinem Gerät.</p>
-      </details>
-      <details class="group rounded-xl border border-slate-200 p-5 bg-white">
-        <summary class="font-semibold cursor-pointer flex items-center justify-between">Gibt es einen Dark Mode? <span class="text-slate-400 group-open:rotate-180 transition">▾</span></summary>
-        <p class="mt-3 text-slate-700">Ja – folgt den iOS‑Systemeinstellungen automatisch.</p>
-      </details>
-      <details class="group rounded-xl border border-slate-200 p-5 bg-white">
-        <summary class="font-semibold cursor-pointer flex items-center justify-between">Funktioniert die App offline? <span class="text-slate-400 group-open:rotate-180 transition">▾</span></summary>
-        <p class="mt-3 text-slate-700">Ja. Du kannst Einträge offline erfassen und später fortführen.</p>
-      </details>
-    </div>
-  </section>
+        // HERO
+        if (c.hero?.image) {
+          const hi = document.getElementById('heroImage');
+          hi.src = c.hero.image.src;
+          hi.alt = c.hero.image.alt || 'Hero';
+        }
+        document.getElementById('eyebrow').textContent = c.hero?.eyebrow ?? 'Vanlife • iOS';
+        document.getElementById('headline').textContent = c.hero?.headline ?? '';
+        document.getElementById('subline').textContent = c.hero?.subline ?? '';
+        if (c.hero?.primaryCta) {
+          const p = document.getElementById('primaryCta');
+          p.href = c.hero.primaryCta.href;
+          p.firstElementChild.textContent = c.hero.primaryCta.label;
+        }
+        if (c.hero?.secondaryCta) {
+          const s = document.getElementById('secondaryCta');
+          s.href = c.hero.secondaryCta.href;
+          s.firstElementChild.textContent = c.hero.secondaryCta.label;
+        }
 
-  <!-- Feedback / Kontaktformular -->
-  <section id="feedback" class="bg-soft">
-    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-ink">Dein Feedback</h2>
-      <p class="mt-2 text-slate-600">Wünsche, Bugs, Ideen – hau raus. Die Nachricht geht direkt per E‑Mail an <a href="mailto:oliver@vanityontour.de" class="text-primary underline">oliver@vanityontour.de</a>.</p>
-
-      <form id="contactForm" class="mt-8 grid gap-5" autocomplete="on" aria-describedby="privacyNote">
-        <div class="grid md:grid-cols-2 gap-5">
-          <div>
-            <label for="name" class="block text-sm font-medium text-slate-700">Name</label>
-            <input id="name" name="name" type="text" required class="mt-2 w-full rounded-xl border-slate-300 focus:border-primary focus:ring-primary" placeholder="Max Mustermann" />
-          </div>
-          <div>
-            <label for="email" class="block text-sm font-medium text-slate-700">E‑Mail</label>
-            <input id="email" name="email" type="email" required class="mt-2 w-full rounded-xl border-slate-300 focus:border-primary focus:ring-primary" placeholder="du@example.com" />
-          </div>
-        </div>
-        <div>
-          <label for="type" class="block text-sm font-medium text-slate-700">Thema</label>
-          <select id="type" name="type" class="mt-2 w-full rounded-xl border-slate-300 focus:border-primary focus:ring-primary">
-            <option>Bug</option>
-            <option>Feature</option>
-            <option>Allgemein</option>
-          </select>
-        </div>
-        <div>
-          <label for="message" class="block text-sm font-medium text-slate-700">Nachricht</label>
-          <textarea id="message" name="message" rows="6" required class="mt-2 w-full rounded-xl border-slate-300 focus:border-primary focus:ring-primary" placeholder="Was ist los? Wie kann ich helfen?"></textarea>
-        </div>
-        <p id="privacyNote" class="text-sm text-slate-500">Hinweis: Die Angaben werden ausschließlich zur Bearbeitung deiner Anfrage verwendet und nicht gespeichert. Keine Cookies, kein Tracking. Details: <a class="underline" href="https://vanityontour.de/datenschutz/">Datenschutz</a>.</p>
-        <div class="flex items-center gap-3">
-          <button type="submit" class="inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 text-white shadow-soft hover:bg-primary-dark">Absenden</button>
-          <span id="formStatus" role="status" class="text-sm text-slate-600"></span>
-        </div>
-      </form>
-
-      <script>
-        // Mailto‑Submit: erzeugt eine E‑Mail mit vorgefülltem Betreff/Text
-        // Hinweis: Für produktiven Versand kann hier alternativ ein CloudPage‑Endpoint genutzt werden.
-        const form = document.getElementById('contactForm');
-        const statusEl = document.getElementById('formStatus');
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const name = document.getElementById('name').value.trim();
-          const email = document.getElementById('email').value.trim();
-          const type = document.getElementById('type').value;
-          const message = document.getElementById('message').value.trim();
-
-          const subject = encodeURIComponent(`[Vanity Expense Logbook] ${type} – ${name}`);
-          const body = encodeURIComponent(
-`Name: ${name}
-E‑Mail: ${email}
-Thema: ${type}
-\nNachricht:\n${message}\n\n---\nGesendet von der Landingpage https://vanityontour.de/vanity-app/`
-          );
-
-          const mailto = `mailto:oliver@vanityontour.de?subject=${subject}&body=${body}`;
-          window.location.href = mailto;
-          statusEl.textContent = 'Dein E‑Mail‑Programm wurde geöffnet. Danke für dein Feedback!';
+        // FEATURES
+        const fWrap = document.getElementById('features');
+        (c.features ?? []).forEach(f => {
+          const el = document.createElement('div');
+          el.className = 'card feat';
+          el.innerHTML = `
+            <div class="dot"></div>
+            <div>
+              <h3 style="margin:0 0 6px">${esc(f.title)}</h3>
+              <p style="margin:0;color:var(--muted)">${esc(f.text)}</p>
+            </div>`;
+          fWrap.appendChild(el);
         });
-      </script>
-    </div>
-  </section>
 
-  <!-- CTA -->
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-    <div class="rounded-3xl bg-gradient-to-r from-primary to-accent text-white p-10 lg:p-14 shadow-soft">
-      <div class="grid lg:grid-cols-2 gap-8 items-center">
-        <div>
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">Bereit, die Kosten zu zähmen?</h2>
-          <p class=\"mt-2 text-white/90\">Hol dir Vanity Expense Logbook und behalte deine Ausgaben im Griff – vom ersten Liter bis zum nächsten Abenteuer. <strong>Einmalig 0,99 €</strong> im App Store, kein Abo.</p>
-        </div>
-        <div class="flex lg:justify-end items-center gap-4">
-          <a href="https://vanityontour.de/landing" class="inline-flex items-center gap-3 rounded-2xl bg-black text-white px-5 py-3 shadow hover:opacity-90" aria-label="Im App Store laden">
-            <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Lade es im App Store" class="h-10 w-auto" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+        // GALLERY
+        document.getElementById('galleryIntro').textContent = c.gallery?.intro ?? '';
+        const g = document.getElementById('gallery');
+        (c.gallery?.images ?? []).forEach((img, i) => {
+          const fig = document.createElement('figure');
+          fig.innerHTML = `
+            <img src="${img.src}" alt="${esc(img.alt || '')}" data-full="${img.full || img.src}" loading="lazy">
+            ${img.caption ? `<figcaption class="caption">${esc(img.caption)}</figcaption>` : ''}`;
+          g.appendChild(fig);
+        });
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-200">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 text-sm text-slate-600 grid md:grid-cols-3 gap-6">
-      <div>
-        <strong>Vanity on Tour</strong><br />
-        © <span id="year"></span> Vanity on Tour
-      </div>
-      <div class="space-x-4">
-        <a class="underline" href="https://vanityontour.de/impressum/">Impressum</a>
-        <a class="underline" href="https://vanityontour.de/datenschutz/">Datenschutz</a>
-      </div>
-      <div>
-        <a class="underline" href="#feedback">Feedback senden</a>
-      </div>
-    </div>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  </footer>
+        // CHANGELOG
+        const ch = document.getElementById('changelog');
+        if (c.changelog && c.changelog.length) {
+          ch.innerHTML = c.changelog
+            .map(entry => `
+              <div style="padding:10px 0;border-bottom:1px solid #1f2937">
+                <strong>v${esc(entry.version)}</strong>
+                <span class="caption"> – ${esc(entry.date)}</span>
+                ${entry.notes && entry.notes.length
+                  ? `<ul style="margin:6px 0 0 18px">${entry.notes.map(n => `<li>${esc(n)}</li>`).join('')}</ul>`
+                  : ''
+                }
+              </div>
+            `).join('');
+        } else {
+          ch.innerHTML = `<p class="caption">Noch keine Einträge. Trage Versionen in <code>content.json</code> unter <code>changelog</code> ein.</p>`;
+        }
+
+        // INFO/CTAs
+        document.getElementById('infoTitle').textContent = c.info?.title ?? 'Info';
+        document.getElementById('infoBody').innerHTML = c.info?.bodyHtml ?? '';
+        if (c.info?.storeCta) {
+          const a = document.getElementById('storeCta');
+          a.href = c.info.storeCta.href; a.textContent = c.info.storeCta.label;
+        }
+        if (c.info?.altCta) {
+          const a = document.getElementById('altCta');
+          a.href = c.info.altCta.href; a.textContent = c.info.altCta.label;
+        }
+
+        // Footer / Datum
+        document.getElementById('lastUpdated').textContent = c.lastUpdated ?? new Date().toLocaleDateString('de-DE');
+
+      } catch (e) {
+        console.warn('Fallback aktiv:', e.message);
+      }
+
+      // LIGHTBOX: öffnen/schließen
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lbImg');
+      const lbClose = document.getElementById('lbClose');
+
+      document.getElementById('gallery').addEventListener('click', (ev) => {
+        const t = ev.target;
+        if (t.tagName === 'IMG') {
+          lbImg.src = t.dataset.full || t.src;
+          lbImg.alt = t.alt || '';
+          lb.classList.add('open');
+        }
+      });
+      const close = () => lb.classList.remove('open');
+      lbClose.addEventListener('click', close);
+      lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+{
+  "lastUpdated": "12.10.2025",
+  "hero": {
+    "eyebrow": "Vanlife • iOS",
+    "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
+    "subline": "Behalte Ausgaben im Blick und tracke Tank, Gas & Service. Einfache Übersicht statt Zettelchaos.",
+    "image": {
+      "src": "assets/img/hero-van.png",
+      "alt": "Camper am See bei Sonnenuntergang mit iPhone"
+    },
+    "primaryCta": { "label": "Jetzt im App Store", "href": "https://app.vanityontour.de" },
+    "secondaryCta": { "label": "Mehr erfahren", "href": "#features" }
+  },
+  "features": [
+    { "title": "Kosten im Blick", "text": "Tank, Gas, Stellplatz & Sonstiges sauber getrennt – mit Auswertung pro Monat." },
+    { "title": "Smarte Auswertung", "text": "Balken- & Liniendiagramm, Durchschnittswerte, Trends – schnell sichtbar." },
+    { "title": "Karte & Pins", "text": "Finde deine Tank- & Gas-Spots wieder – mit interaktiver Karte." }
+  ],
+  "gallery": {
+    "intro": "Screens & Mockups – so sieht die App wirklich aus.",
+    "images": [
+      {
+        "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board01.jpeg",
+        "alt": "Übersicht über alle Kosten im iPhone-Mockup",
+        "caption": "Übersicht über alle Kosten, damit hat man auf Anhieb alles im Blick."
+      },
+        {
+        "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board02.jpeg",
+        "alt": "Neueinträge nach Kategorie iPhone-Mockup",
+        "caption": "Eintragung neuer Kosten schnell und einfach per Kategorie Auswahl."
+      },
+        {
+        "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board04.jpeg",
+        "alt": "Auswertung mit Balkendiagramm im iPhone-Mockup",
+        "caption": "Auswertung: Monate, Kategorien & Summen im Blick."
+      },
+      {
+        "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board03.jpeg",
+        "alt": "Eintrag-Startscreen mit vier Kacheln",
+        "caption": "Eintrag anlegen: Tanken, Gas, Ver-/Entsorgung, Sonstiges."
+      },
+      {
+        "src": "assets/img/mockuuups-businesswoman-working-on-a-iphone-mockup01.jpeg",
+        "alt": "App im Auto – Startansicht",
+        "caption": "Übersicht: Verbrauch, Gas-Tage & letzte Belege."
+      }
+    ]
+  },
+  "changelog": [
+    {
+      "version": "2.3.1",
+      "date": "2025-10-10",
+      "notes": [
+        "Neue Auswertungsoptionen (verbesserte Balkenlabels)",
+        "Kartenansicht optimiert (Pins + Filter)",
+        "Eintragsmaske klarer strukturiert"
+      ]
+    },
+    {
+      "version": "2.3.0",
+      "date": "2025-09-15",
+      "notes": [
+        "iOS 18 Kompatibilität",
+        "Leistungsverbesserungen bei großen Datensätzen",
+        "Fehlerbehebungen beim Import"
+      ]
+    }
+  ],
+  "info": {
+    "title": "Was ist neu?",
+    "bodyHtml": "<ul><li>Bessere Diagrammlesbarkeit</li><li>Karten-Pins mit Filtern</li><li>Eintragsmaske schneller & klarer</li></ul>",
+    "storeCta": { "label": "App-Link öffnen", "href": "https://app.vanityontour.de" },
+    "altCta": { "label": "Tracking-Landing", "href": "https://vanityontour.de/landing" }
+  }
+}
