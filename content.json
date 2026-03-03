@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "12.10.2025",
+  "lastUpdated": "03.03.2026",
   "hero": {
     "eyebrow": "Vanlife • iOS",
     "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
@@ -47,6 +47,27 @@
     ]
   },
   "changelog": [
+      {
+      "version": "2.3.3",
+      "date": "2026-03-03",
+      "notes": [
+        "- Verbesserte App-Stabilität (Crash-Risiko durch unsichere Typcasts behoben)",
+        "- Automatisches Backup funktioniert jetzt korrekt",
+        "- Backup-Ordner werden nach Sicherung aufgeräumt",
+        "- Privacy Manifest für App Store Compliance hinzugefügt"
+      ]
+    },  {
+      "version": "2.3.2",
+      "date": "2025-11-13",
+      "notes": [
+        "- Neu: Erfolgshinweis (Toast) nach dem Speichern in allen Formularen.",
+        "- Tank: Kompakte Kennzahlen – „⌀ seit letztem“, „Gesamt“, „Trend“, „Kosten/100 km“ und Reichweite (bei gepflegtem Tankvolumen).",
+        "- Profil: Neues Feld „Tankvolumen (Liter)“ zur Reichweitenschätzung.",
+        "- Besser: Deutsche Zahlen- und Währungsdarstellung (Tausenderpunkt, Komma).",
+        "- Wartung: Version auf 2.3.2 angehoben und Changelog gepflegt."
+
+      ]
+    },
     {
       "version": "2.3.1",
       "date": "2025-10-10",
