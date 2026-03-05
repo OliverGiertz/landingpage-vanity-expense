@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "04.03.2026",
+  "lastUpdated": "05.03.2026",
   "hero": {
     "eyebrow": "Vanlife • iOS",
     "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
@@ -63,6 +63,18 @@
   },
   "changelog": [
     {
+      "version": "2.4.1",
+      "date": "2026-03-05",
+      "notes": [
+        "- Version 2.4.1 – Stabilitäts- und Performance-Update",
+        "- Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den",
+        "- Funktionen.",
+        "- Schnellere Analyse-Ansicht: Daten werden jetzt im Hintergrund geladen, kein Ruckeln mehr beim Öffnen",
+        "- Fehlerbehebung: Beleg-Funktion in der Bearbeitung von Ver-/Entsorgungseinträgen war nicht sichtbar – korrigiert",
+        "- Verbesserte Code-Qualität und automatisierte Tests für zukünftige Updates"
+      ]
+    },
+    {
       "version": "2.3.3",
       "date": "2026-03-04",
       "notes": [
@@ -104,8 +116,8 @@
     }
   ],
   "info": {
-    "title": "Was ist neu in v2.3.3?",
-    "bodyHtml": "<ul><li>Version 2.3.3</li><li>Verbesserte App-Stabilität (Crash-Risiko durch unsichere Typcasts behoben)</li><li>Automatisches Backup funktioniert jetzt korrekt</li><li>Backup-Ordner werden nach Sicherung aufgeräumt</li><li>Privacy Manifest für App Store Compliance hinzugefügt</li></ul>",
+    "title": "Was ist neu in v2.4.1?",
+    "bodyHtml": "<ul><li>Version 2.4.1 – Stabilitäts- und Performance-Update</li><li>Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den</li><li>Funktionen.</li><li>Schnellere Analyse-Ansicht: Daten werden jetzt im Hintergrund geladen, kein Ruckeln mehr beim Öffnen</li><li>Fehlerbehebung: Beleg-Funktion in der Bearbeitung von Ver-/Entsorgungseinträgen war nicht sichtbar – korrigiert</li><li>Verbesserte Code-Qualität und automatisierte Tests für zukünftige Updates</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
