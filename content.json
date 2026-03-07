@@ -67,8 +67,7 @@
       "date": "2026-03-05",
       "notes": [
         "- Version 2.4.1 – Stabilitäts- und Performance-Update",
-        "- Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den",
-        "- Funktionen.",
+        "- Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den Funktionen.",
         "- Schnellere Analyse-Ansicht: Daten werden jetzt im Hintergrund geladen, kein Ruckeln mehr beim Öffnen",
         "- Fehlerbehebung: Beleg-Funktion in der Bearbeitung von Ver-/Entsorgungseinträgen war nicht sichtbar – korrigiert",
         "- Verbesserte Code-Qualität und automatisierte Tests für zukünftige Updates"
