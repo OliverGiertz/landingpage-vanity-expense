@@ -116,7 +116,7 @@
   ],
   "info": {
     "title": "Was ist neu in v2.4.1?",
-    "bodyHtml": "<ul><li>Version 2.4.1 – Stabilitäts- und Performance-Update</li><li>Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den</li><li>Funktionen.</li><li>Schnellere Analyse-Ansicht: Daten werden jetzt im Hintergrund geladen, kein Ruckeln mehr beim Öffnen</li><li>Fehlerbehebung: Beleg-Funktion in der Bearbeitung von Ver-/Entsorgungseinträgen war nicht sichtbar – korrigiert</li><li>Verbesserte Code-Qualität und automatisierte Tests für zukünftige Updates</li></ul>",
+    "bodyHtml": "<ul><li>Version 2.4.1 – Stabilitäts- und Performance-Update</li><li>Diese Version enthält ausschließlich technische Verbesserungen unter der Haube – keine Änderungen am Design oder den Funktionen.</li><li>Schnellere Analyse-Ansicht: Daten werden jetzt im Hintergrund geladen, kein Ruckeln mehr beim Öffnen</li><li>Fehlerbehebung: Beleg-Funktion in der Bearbeitung von Ver-/Entsorgungseinträgen war nicht sichtbar – korrigiert</li><li>Verbesserte Code-Qualität und automatisierte Tests für zukünftige Updates</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
