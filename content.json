@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "08.03.2026",
+  "lastUpdated": "09.03.2026",
   "hero": {
     "eyebrow": "Vanlife • iOS",
     "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
@@ -63,6 +63,13 @@
   },
   "changelog": [
     {
+      "version": "2.5.1",
+      "date": "2026-03-09",
+      "notes": [
+        "- Technische Verbesserungen für mehr Stabilität und Zuverlässigkeit. Das Backup-System wurde grundlegend überarbeitet und läuft nun stabiler im Hintergrund. Außerdem wurden interne Qualitätsmaßnahmen eingeführt, die zukünftige Updates robuster machen."
+      ]
+    },
+    {
       "date": "2026-03-08",
       "notes": [
         "- Stabilitaetsverbesserungen und Optimierungen."
@@ -121,8 +128,8 @@
     }
   ],
   "info": {
-    "title": "Was ist neu in vundefined?",
-    "bodyHtml": "<ul><li>Stabilitaetsverbesserungen und Optimierungen.</li></ul>",
+    "title": "Was ist neu in v2.5.1?",
+    "bodyHtml": "<ul><li>Technische Verbesserungen für mehr Stabilität und Zuverlässigkeit. Das Backup-System wurde grundlegend überarbeitet und läuft nun stabiler im Hintergrund. Außerdem wurden interne Qualitätsmaßnahmen eingeführt, die zukünftige Updates robuster machen.</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
