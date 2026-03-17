@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "12.03.2026",
+  "lastUpdated": "17.03.2026",
   "hero": {
     "eyebrow": "Vanlife • iOS",
     "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
@@ -62,6 +62,12 @@
     ]
   },
   "changelog": [
+    {
+      "date": "2026-03-17",
+      "notes": [
+        "- Stabilitaetsverbesserungen und Optimierungen."
+      ]
+    },
     {
       "version": "2.7.1",
       "date": "2026-03-12",
@@ -140,8 +146,8 @@
     }
   ],
   "info": {
-    "title": "Was ist neu in v2.7.1?",
-    "bodyHtml": "<ul><li>Was ist neu in Version 2.7.1</li><li>Neue Ausgabenliste</li><li>Alle erfassten Einträge jetzt zentral im neuen Tab „Ausgaben\" im Blick – Tankbelege, Gas, Ver-/Entsorgung und sonstige Kosten in einer gemeinsamen, nach Datum sortierten Liste. Einträge lassen sich direkt antippen und bearbeiten. Fehleingaben können per Swipe gelöscht werden – ein Bestätigungsdialog schützt vor versehentlichem Datenverlust.</li><li>Filteroptionen für Eintragstyp, Zeitraum und eigene Kategorien helfen dabei, schnell den richtigen Eintrag zu finden.</li><li>Verbesserte Auswertung</li><li>Die Auswertungsansicht unterstützt jetzt flexible Zeitraumfilter mit Schnellauswahlen (Monat, Quartal, Jahr) sowie einem frei wählbaren Datumsbereich. Alle selbst angelegten Kategorien erscheinen direkt als Filteroptionen – Charts und Summen aktualisieren sich sofort bei der Auswahl.</li></ul>",
+    "title": "Was ist neu in vundefined?",
+    "bodyHtml": "<ul><li>Stabilitaetsverbesserungen und Optimierungen.</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
