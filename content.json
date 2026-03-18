@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "17.03.2026",
+  "lastUpdated": "18.03.2026",
   "hero": {
     "eyebrow": "Vanlife • iOS",
     "headline": "Vanity Expense Logbook – die App fürs Vanlife!",
@@ -62,6 +62,20 @@
     ]
   },
   "changelog": [
+    {
+      "version": "3.0.12",
+      "date": "2026-03-18",
+      "notes": [
+        "- Wartungsintervalle für km und Zeit",
+        "- Fälligkeits-Ampel in der Tab-Leiste",
+        "- Home-Screen-Widget für Ausgaben",
+        "- Wartung als erledigt per Wischgeste",
+        "- Kompatibler Standort-Picker für iOS 17",
+        "- Farbliche Pins für Versorgungsstationen",
+        "- Automatische Auslagerung großer Belegfotos",
+        "- Korrekte Verbrauchsberechnung bei Teilbetankungen"
+      ]
+    },
     {
       "date": "2026-03-17",
       "notes": [
@@ -146,8 +160,8 @@
     }
   ],
   "info": {
-    "title": "Was ist neu in vundefined?",
-    "bodyHtml": "<ul><li>Stabilitaetsverbesserungen und Optimierungen.</li></ul>",
+    "title": "Was ist neu in v3.0.12?",
+    "bodyHtml": "<ul><li>Wartungsintervalle für km und Zeit</li><li>Fälligkeits-Ampel in der Tab-Leiste</li><li>Home-Screen-Widget für Ausgaben</li><li>Wartung als erledigt per Wischgeste</li><li>Kompatibler Standort-Picker für iOS 17</li><li>Farbliche Pins für Versorgungsstationen</li><li>Automatische Auslagerung großer Belegfotos</li><li>Korrekte Verbrauchsberechnung bei Teilbetankungen</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
