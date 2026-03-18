@@ -66,12 +66,12 @@
       "version": "3.0.12",
       "date": "2026-03-18",
       "notes": [
-        "- Wartungsintervalle für km und Zeit",
-        "- Fälligkeits-Ampel in der Tab-Leiste",
+        "- Wartungsintervalle für Fahrzeugverfolgung",
+        "- Fälligkeits-Ampel in Tab-Leiste",
         "- Home-Screen-Widget für Ausgaben",
-        "- Wartung als erledigt per Wischgeste",
-        "- Kompatibler Standort-Picker für iOS 17",
-        "- Farbliche Pins für Versorgungsstationen",
+        "- Suche in Ausgabenliste optimiert",
+        "- Gas- und Ver-/Entsorgungsstationen farbige Pins",
+        "- Neuer Zeitraum-Filter \"3 Monate\"",
         "- Automatische Auslagerung großer Belegfotos",
         "- Korrekte Verbrauchsberechnung bei Teilbetankungen"
       ]
@@ -161,7 +161,7 @@
   ],
   "info": {
     "title": "Was ist neu in v3.0.12?",
-    "bodyHtml": "<ul><li>Wartungsintervalle für km und Zeit</li><li>Fälligkeits-Ampel in der Tab-Leiste</li><li>Home-Screen-Widget für Ausgaben</li><li>Wartung als erledigt per Wischgeste</li><li>Kompatibler Standort-Picker für iOS 17</li><li>Farbliche Pins für Versorgungsstationen</li><li>Automatische Auslagerung großer Belegfotos</li><li>Korrekte Verbrauchsberechnung bei Teilbetankungen</li></ul>",
+    "bodyHtml": "<ul><li>Wartungsintervalle für Fahrzeugverfolgung</li><li>Fälligkeits-Ampel in Tab-Leiste</li><li>Home-Screen-Widget für Ausgaben</li><li>Suche in Ausgabenliste optimiert</li><li>Gas- und Ver-/Entsorgungsstationen farbige Pins</li><li>Neuer Zeitraum-Filter \"3 Monate\"</li><li>Automatische Auslagerung großer Belegfotos</li><li>Korrekte Verbrauchsberechnung bei Teilbetankungen</li></ul>",
     "storeCta": {
       "label": " zum AppStore",
       "href": "https://vanityontour.de/landing"
