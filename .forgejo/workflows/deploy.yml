@@ -1,0 +1,123 @@
+name: Deploy app.vanityontour.de
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: "27 6 * * *"   # taeglich: App-Store-Daten holen, neu ausliefern, Heartbeat
+
+concurrency:
+  group: deploy-app-vanityontour
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    # Linux-Container auf dem dauerhaft laufenden Forgejo-Runner (hostingervps),
+    # nicht auf dem Mac: der laeuft nur, solange der Rechner wach und online ist.
+    # Vorher lief das Deploy als GitHub Action auf dem Spiegel und startete nur
+    # bei einem Push. Die Pushes kamen von einem externen Werkzeug, das seit dem
+    # 18.03.2026 nicht mehr lief – die Seite stand danach monatelang still, und
+    # niemand bekam es mit. Deshalb jetzt: taeglicher Lauf plus Heartbeat an
+    # Uptime Kuma. Bleibt der Heartbeat aus, meldet Kuma das.
+    runs-on: docker
+    container:
+      image: node:20-bookworm
+    env:
+      SSH_HOST: 88.99.209.207
+      SSH_USER: vanityontour-app
+      DEPLOY_PATH: /home/vanityontour-app/htdocs/app.vanityontour.de
+      SITE: https://app.vanityontour.de
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install rsync and ssh
+        run: |
+          apt-get update -qq
+          apt-get install -y -qq --no-install-recommends rsync openssh-client
+
+      - name: Refresh App Store data
+        # Darf das Deploy nicht blockieren; der Ausgang steuert aber, ob
+        # content.json ausgeliefert wird (siehe Deploy-Schritt).
+        id: sync
+        continue-on-error: true
+        run: node scripts/sync-appstore.mjs
+
+      - name: Prepare SSH
+        # Host-Schluessel fest hinterlegt statt accept-new: in einem Wegwerf-
+        # Container wuerde accept-new bei jedem Lauf jedem vertrauen.
+        # Der Deploy-Schluessel ist auf hetzner per from="<VPS-IP>",restrict
+        # eingeschraenkt.
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/deploy ~/.ssh/known_hosts
+
+      - name: Deploy via rsync (hetzner)
+        run: |
+          # Scheitert der Sync, traegt content.json im Arbeitsbaum den
+          # committeten Stand. Der kann aelter sein als der live liegende –
+          # dann bleibt die live liegende Datei besser stehen.
+          # --exclude schuetzt auch vor --delete.
+          schutz=""
+          if [ "${{ steps.sync.outcome }}" != "success" ]; then
+            echo "::warning::App-Store-Sync gescheitert – content.json bleibt unangetastet."
+            schutz="--exclude=content.json"
+          fi
+          rsync -rlptz --delete $schutz \
+            --exclude '.git/' \
+            --exclude '.forgejo/' \
+            --exclude '.github/' \
+            --exclude '.vscode/' \
+            --exclude 'scripts/' \
+            --exclude 'old_index.html' \
+            --exclude 'README.md' \
+            --exclude '.gitignore' \
+            --exclude '.DS_Store' \
+            --exclude '.well-known/acme-challenge/' \
+            --exclude '.deployed_*' \
+            -e "ssh -i ~/.ssh/deploy -o UserKnownHostsFile=~/.ssh/known_hosts -o BatchMode=yes" \
+            ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"
+
+      - name: Verify the live site carries what the repository holds
+        # Ohne diesen Schritt waere der Job gruen, sobald rsync mit 0 endet –
+        # auch wenn er in den falschen Pfad geschrieben hat.
+        run: |
+          dateien="index.html"
+          if [ "${{ steps.sync.outcome }}" = "success" ]; then
+            dateien="content.json index.html"
+          fi
+          fehler=0
+          for datei in $dateien; do
+            hier=$(md5sum "$datei" | cut -d' ' -f1)
+            dort=$(curl -sS --fail "$SITE/$datei?cb=$(date +%s)" | md5sum | cut -d' ' -f1)
+            if [ "$hier" = "$dort" ]; then
+              echo "  ok   $datei ($hier)"
+            else
+              echo "  FEHL $datei – Repository $hier, live $dort"
+              fehler=1
+            fi
+          done
+          exit $fehler
+
+      - name: Heartbeat an Uptime Kuma (Erfolg)
+        if: success()
+        env:
+          KUMA_PUSH_URL: ${{ secrets.KUMA_PUSH_URL }}
+        run: |
+          if [ -z "$KUMA_PUSH_URL" ]; then echo "::warning::KUMA_PUSH_URL fehlt – kein Heartbeat."; exit 0; fi
+          msg="deploy ok, sync ${{ steps.sync.outcome }}"
+          curl -fsS -G "$KUMA_PUSH_URL" --data-urlencode "status=up" --data-urlencode "msg=$msg" --data-urlencode "ping=" > /dev/null
+
+      - name: Heartbeat an Uptime Kuma (Fehler)
+        if: failure()
+        env:
+          KUMA_PUSH_URL: ${{ secrets.KUMA_PUSH_URL }}
+        run: |
+          [ -z "$KUMA_PUSH_URL" ] && exit 0
+          curl -fsS -G "$KUMA_PUSH_URL" --data-urlencode "status=down" --data-urlencode "msg=deploy fehlgeschlagen" --data-urlencode "ping=" > /dev/null || true
