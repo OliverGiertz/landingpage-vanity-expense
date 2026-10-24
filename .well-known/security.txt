@@ -4,4 +4,5 @@ Preferred-Languages: de, en
 Policy: https://vanityontour.de/sicherheit/
 Canonical: https://vanityontour.de/.well-known/security.txt
 Canonical: https://app.vanityontour.de/.well-known/security.txt
+Canonical: https://expense.vanityontour.de/.well-known/security.txt
 Canonical: https://vanitycast.vanityontour.de/.well-known/security.txt

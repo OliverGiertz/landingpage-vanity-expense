@@ -1,4 +1,4 @@
-name: Deploy app.vanityontour.de
+name: Deploy expense.vanityontour.de
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     - cron: "27 6 * * *"   # taeglich: App-Store-Daten holen, neu ausliefern, Heartbeat
 
 concurrency:
-  group: deploy-app-vanityontour
+  group: deploy-expense-vanityontour
   cancel-in-progress: true
 
 jobs:
@@ -25,9 +25,11 @@ jobs:
       image: node:20-bookworm
     env:
       SSH_HOST: 88.99.209.207
-      SSH_USER: vanityontour-app
-      DEPLOY_PATH: /home/vanityontour-app/htdocs/app.vanityontour.de
-      SITE: https://app.vanityontour.de
+      # Seit 24.10.2026 eigene Subdomain; app.vanityontour.de ist jetzt die
+      # Übersicht aller Apps (Repo landingpage-apps) und leitet alte Pfade hierher.
+      SSH_USER: vanityontour-expense
+      DEPLOY_PATH: /home/vanityontour-expense/htdocs/expense.vanityontour.de
+      SITE: https://expense.vanityontour.de
     steps:
       - name: Checkout
         uses: actions/checkout@v4
