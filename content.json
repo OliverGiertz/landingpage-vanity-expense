@@ -6,7 +6,7 @@
     "subline": "Behalte Ausgaben im Blick und tracke Tank, Gas & Service. Einfache Übersicht statt Zettelchaos.",
     "image": {
       "src": "assets/img/hero-van.png",
-      "alt": "Camper am See bei Sonnenuntergang mit iPhone"
+      "alt": "Vanity Expense Logbook 3.1 mit Monatskosten, Verbrauch und Gasvorrat auf einem iPhone"
     },
     "primaryCta": {
       "label": " Jetzt im App Store",
@@ -27,22 +27,22 @@
       "text": "Balken- & Liniendiagramm, Durchschnittswerte, Trends – schnell sichtbar."
     },
     {
-      "title": "Karte & Pins",
-      "text": "Finde deine Tank- & Gas-Spots wieder – mit interaktiver Karte."
+      "title": "Wartung im Blick",
+      "text": "Statuskarten zeigen dir, welche Wartungen fällig sind und welche bald anstehen."
     }
   ],
   "gallery": {
-    "intro": "Screens & Mockups – so sieht die App wirklich aus.",
+    "intro": "So sieht Vanity Expense Logbook 3.1 auf dem iPhone aus.",
     "images": [
       {
         "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board01.jpeg",
-        "alt": "Übersicht über alle Kosten im iPhone-Mockup",
-        "caption": "Übersicht über alle Kosten, damit hat man auf Anhieb alles im Blick."
+        "alt": "Neue Übersicht mit Monatskosten, Verbrauch und Gasvorrat",
+        "caption": "Monatskosten, Verbrauch und Gasvorrat auf einen Blick."
       },
       {
         "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board02.jpeg",
-        "alt": "Neueinträge nach Kategorie iPhone-Mockup",
-        "caption": "Eintragung neuer Kosten schnell und einfach per Kategorie Auswahl."
+        "alt": "Neuer Eintrag mit Auswahl für Tanken, Gas, Ver- und Entsorgung sowie Sonstiges",
+        "caption": "Tippe in einem beliebigen Tab auf das Plus und wähle die Kostenart."
       },
       {
         "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board04.jpeg",
@@ -51,13 +51,13 @@
       },
       {
         "src": "assets/img/mockuuups-iphone-mockup-on-the-chess-board03.jpeg",
-        "alt": "Eintrag-Startscreen mit vier Kacheln",
-        "caption": "Eintrag anlegen: Tanken, Gas, Ver-/Entsorgung, Sonstiges."
+        "alt": "Ausgabenliste mit Monatsgruppen und Filtern für Kostenarten",
+        "caption": "Ausgaben nach Monat ansehen und nach Kostenart filtern."
       },
       {
         "src": "assets/img/mockuuups-businesswoman-working-on-a-iphone-mockup01.jpeg",
-        "alt": "App im Auto – Startansicht",
-        "caption": "Übersicht: Verbrauch, Gas-Tage & letzte Belege."
+        "alt": "Wartungsübersicht mit farbigen Statuskarten",
+        "caption": "Sieh, welche Wartungen fällig sind und welche bald anstehen."
       }
     ]
   },
