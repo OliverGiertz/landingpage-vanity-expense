@@ -10,7 +10,7 @@
   <meta property="og:title" content="Vanity Expense Logbook" />
   <meta property="og:description" content="Behalte Ausgaben im Blick – tracke Tank, Gas & Service." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://expense.vanityontour.de/assets/img/hero-van.png" />
+  <meta property="og:image" content="https://expense.vanityontour.de/assets/img/hero-van.png?v=3.1" />
   <meta name="theme-color" content="#111827" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
@@ -58,7 +58,7 @@
   <main class="wrap">
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
-      <img id="heroImage" src="assets/img/hero-van.png" alt="Vanity Expense Logbook 3.1 auf dem iPhone" loading="lazy" />
+      <img id="heroImage" src="assets/img/hero-van.png?v=3.1" alt="Vanity Expense Logbook 3.1 auf dem iPhone" loading="lazy" />
       <div class="overlay">
         <div class="eyebrow" id="eyebrow">Vanlife • iOS</div>
         <h1 id="headline">Vanity Expense Logbook – die App fürs Vanlife!</h1>
@@ -125,6 +125,13 @@
     // Helper: HTML escapen für Changelog
     const esc = (s) => (s || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
+    // Bei neuen Screenshots auch die Bildversion im Hero und im OG-Tag ändern.
+    const imageUrl = (src) => {
+      const url = new URL(src, document.baseURI);
+      if (url.origin === location.origin) url.searchParams.set('v', '3.1');
+      return url.href;
+    };
+
     (async () => {
       try {
         const res = await fetch('content.json?bust=' + Date.now());
@@ -134,7 +141,7 @@
         // HERO
         if (c.hero?.image) {
           const hi = document.getElementById('heroImage');
-          hi.src = c.hero.image.src;
+          hi.src = imageUrl(c.hero.image.src);
           hi.alt = c.hero.image.alt || 'Hero';
         }
         document.getElementById('eyebrow').textContent = c.hero?.eyebrow ?? 'Vanlife • iOS';
@@ -171,7 +178,7 @@
         (c.gallery?.images ?? []).forEach((img, i) => {
           const fig = document.createElement('figure');
           fig.innerHTML = `
-            <img src="${img.src}" alt="${esc(img.alt || '')}" data-full="${img.full || img.src}" loading="lazy">
+            <img src="${esc(imageUrl(img.src))}" alt="${esc(img.alt || '')}" data-full="${esc(imageUrl(img.full || img.src))}" loading="lazy">
             ${img.caption ? `<figcaption class="caption">${esc(img.caption)}</figcaption>` : ''}`;
           g.appendChild(fig);
         });
